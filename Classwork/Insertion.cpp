@@ -16,14 +16,12 @@ int main() {
         std::cout << "Array[" << i << "] = ";
         std::cin >> arr[i];
     }
-    int temp;
-
     for (int i = 1; i < count; ++i) { 
         for (int j = i - 1; j >= 0; --j) {
             if (arr[i] < arr[j]) {
-                temp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = temp;
+                arr[i] += arr[j];
+                arr[j] = arr[i] - arr[j];
+                arr[i] = arr[i] - arr[j];
                 --i;
             }
         }
