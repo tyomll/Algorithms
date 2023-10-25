@@ -3,7 +3,7 @@
 
 void InsertionSort(std::vector<int> & arr) {
     for (int i = 1; i < arr.size(); i++) {
-        while (arr[i - 1] > arr[i]) {
+        while (arr[i - 1] > arr[i] && i >= 0) {
             std::swap(arr[i - 1], arr[i]);
             i -= 1;
         }
