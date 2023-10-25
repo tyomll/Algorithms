@@ -2,9 +2,11 @@
 using namespace std;
 
 void print (int arr[],size_t size) {
+    cout << "[ ";
     for (int i = 0; i < size; i++) {
         cout << arr[i] << " ";
     }
+    cout << "]";
     cout << endl;
 }
 
