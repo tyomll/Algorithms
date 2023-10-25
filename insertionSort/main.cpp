@@ -2,13 +2,15 @@
 #include <vector>
 
 void insertionSort(std::vector<int>& arr) {
-    for (size_t i = 0; i < arr.size() - 1; i++) {
-        for (size_t j = i + 1; j < arr.size(); j++) {
-            if (arr[j] < arr[i]) {
+    for (size_t i = 1; i < arr.size(); i++) {
+        int j = 0;
+        while (j < i) {
+            if (arr[j] > arr[i]) {
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
+            j++;
         }
     }
 }
@@ -28,6 +30,7 @@ std::vector<int> inputArr() {
     }
     return arr;
 }
+
 int main() {
     std::vector<int> arr = inputArr();
     insertionSort(arr);
