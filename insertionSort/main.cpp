@@ -3,15 +3,13 @@
 
 void insertionSort(std::vector<int>& arr) {
     for (size_t i = 1; i < arr.size(); i++) {
-        int j = 0;
-        while (j < i) {
-            if (arr[j] > arr[i]) {
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-            j++;
+        int current = arr[i];
+        int j = i - 1;
+        while (j >= 0 && current < arr[j]) {
+            arr[j + 1] = arr[j];
+            j--;
         }
+        arr[j + 1] = current;
     }
 }
 
