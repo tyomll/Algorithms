@@ -1,9 +1,24 @@
 #include <iostream>
-#include <vector>
 
 void printArr(int* arr, int count) {
     for (int i = 0; i < count; ++i) {
         std::cout << "Array[" << i << "] = " << arr[i] << std::endl;
+    }
+}
+
+void insertArr(int* arr, int count) {
+    for (int i = 0; i < count; i++) {
+        std::cout << "Array[" << i << "] = ";
+        std::cin >> arr[i];
+    }
+}
+
+void insertionSort(int* arr, int count) {
+    for (int i = 1; i < count; ++i) { 
+        while (arr[i] < arr[i - 1] && i >= 1) {
+            std::swap(arr[i], arr[i - 1]);
+            --i;
+        }
     }
 }
 
@@ -12,24 +27,10 @@ int main() {
     std::cout << "Count = ";
     std::cin >> count;
     int arr[count];
-    for (int i = 0; i < count; i++) {
-        std::cout << "Array[" << i << "] = ";
-        std::cin >> arr[i];
-    }
-    for (int i = 1; i < count; ++i) { 
-        for (int j = i - 1; j >= 0; --j) {
-            if (arr[i] < arr[j]) {
-                arr[i] += arr[j];
-                arr[j] = arr[i] - arr[j];
-                arr[i] = arr[i] - arr[j];
-                --i;
-            }
-        }
-    }
+    insertArr(arr, count);
+    insertionSort(arr, count);
     std::cout << "\nSorted\n\n";
     printArr(arr, count);
 
     return 0;
-    
-    
 }
