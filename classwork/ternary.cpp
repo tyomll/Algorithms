@@ -2,6 +2,7 @@
 
 int search(int arr[], int left, int right, int value)
 {
+    // function is searching value, it use recursion for divide array to 3 parts
     int mid_left = left + (right - left) / 3;
     int mid_right = right - (right - left) / 3;
 
