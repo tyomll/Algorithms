@@ -12,13 +12,11 @@ int search(std::vector<int>& array, int target) {
         if (target < array[index]) {
             end = index - 1;
             index = (start + end) / 2;
-            std::cout << array[index] << std::endl;
             continue;
         }
         if (target > array[index]) {
             start = index + 1;
             index = (start + end) / 2;
-            std::cout << array[index] << std::endl;
             continue;
         }
     }
