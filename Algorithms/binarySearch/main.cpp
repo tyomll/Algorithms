@@ -8,12 +8,11 @@ int binarySearch(const std::vector<int>& arr, const int& target, int& middle) {
         }
         if (target > arr[middle]) {
             middle++;
-            return binarySearch(arr, target, middle);
         }
         if (target < arr[middle]) {
             middle--;
-            return binarySearch(arr, target, middle);
         }
+        return binarySearch(arr, target, middle);
     }
 
     return -1;
