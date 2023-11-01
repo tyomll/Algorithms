@@ -35,7 +35,7 @@ std::vector<int> inputArr() {
 }
 
 int main() {
-    std::vector arr = inputArr();
+    std::vector<int> arr = inputArr();
     selectionSort(arr);
 
     for (const int& el : arr) {
