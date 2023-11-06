@@ -2,17 +2,35 @@
 #include <sstream>
 #include <vector>
 
-int interpolationSearch(const std::vector<int>& arr, const int& target) {
-    int low = 0, high = arr.size() - 1;
-    int index =
-        low + ((target - arr[low]) * (high - low)) / (arr[high] - arr[low]);
+int interpolationSearch(const std::vector<int>& arr, const int& low,
+                        const int& high, const int& target) {
+    if (arr.empty()) {
+        std::cout << "Array is empty" << std::endl;
+        return -1;
+    }
+    if (arr.size() == 1) {
+        if (target == arr[0]) {
+            return 0;
+        }
+        return -1;
+    }
 
-    return arr[index] == target
-               ? index
-               : index + 1 +
-                     ((target - arr[index + 1]) * (high - index + 1)) /
-                         (arr[high] - arr[index + 1]);
+    int position;
+    if (low <= high && target >= arr[low] && target <= arr[high]) {
+        position = low + (((double)(high - low) / (arr[high] - arr[low])) *
+                          (target - arr[low]));
+
+        if (arr[position] == target) return position;
+
+        if (arr[position] < target)
+            return interpolationSearch(arr, position + 1, high, target);
+
+        if (arr[position] > target)
+            return interpolationSearch(arr, low, position - 1, target);
+    }
+    return -1;
 }
+
 std::vector<int> inputArr() {
     std::vector<int> arr;
 
@@ -23,12 +41,23 @@ std::vector<int> inputArr() {
     std::istringstream iss(arrInput);
     int num;
 
-    while (iss >> num) {
-        arr.push_back(num);
+    while (std::getline(iss, arrInput, ',')) {
+        std::istringstream numStream(arrInput);
+        while (numStream >> num) {
+            arr.push_back(num);
+        }
+    }
+
+    if (arr.empty()) {
+        std::istringstream spaceIss(arrInput);
+        while (spaceIss >> num) {
+            arr.push_back(num);
+        }
     }
 
     return arr;
 }
+
 int main() {
     std::vector<int> arr = inputArr();
     int target;
@@ -36,7 +65,7 @@ int main() {
     std::cout << "Input the target number: ";
     std::cin >> target;
 
-    std::cout << "Index of target number - " << interpolationSearch(arr, target)
+    std::cout << interpolationSearch(arr, 0, arr.size() - 1, target)
               << std::endl;
 
     return 0;
