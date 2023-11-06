@@ -36,10 +36,10 @@ void printArray(const std::vector<int>& arr) {
 
 int main() {
     std::vector<int> arr = {12, 11, 13, 5, 6, 7};
-    std::cout << "Original array: ";
+    std::cout << "Original arr: ";
     printArray(arr);
     heapSort(arr);
-    std::cout << "Sorted array: ";
+    std::cout << "Sorted arr: ";
     printArray(arr);
 
     return 0;

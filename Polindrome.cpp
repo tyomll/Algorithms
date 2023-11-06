@@ -4,7 +4,7 @@
 void newArr(std::vector<int>& Vector, int elements_count) {
     int numbers;
     for (int i = 0; i < elements_count; ++i) {
-        std::cout << "Array[" << i << "]";
+        std::cout << "arr[" << i << "]";
         std::cin >> numbers;
         Vector.push_back(numbers);
     } 

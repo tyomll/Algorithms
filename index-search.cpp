@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-int ternarySearch(const std::vector<int>& arr, int target, int start, int end) {
+int ternary_search(const std::vector<int>& arr, int target, int start, int end) {
     if (start <= end) {
         int middenLeft = start + (end - start) / 3;
         int middenRight = start + 2 * (end - start) / 3;
@@ -13,21 +13,21 @@ int ternarySearch(const std::vector<int>& arr, int target, int start, int end) {
             return middenRight;
         }
         if (target < arr[middenLeft]) {
-            return ternarySearch(arr, target, start, middenLeft - 1);
+            return ternary_search(arr, target, start, middenLeft - 1);
         } 
         else if (target > arr[middenRight]) {
-            return ternarySearch(arr, target, middenRight + 1, end);
+            return ternary_search(arr, target, middenRight + 1, end);
         } 
         else {
-            return ternarySearch(arr, target, middenLeft + 1, middenRight - 1);
+            return ternary_search(arr, target, middenLeft + 1, middenRight - 1);
         }
     }
 
     return -1;
 }
 
-std::pair<int, int> searchIndexes(std::vector<int>& arr, int target) {
-    int index = ternarySearch(arr, target, 0, arr.size() - 1);
+std::pair<int, int> search_indexes(std::vector<int>& arr, int target) {
+    int index = ternary_search(arr, target, 0, arr.size() - 1);
     if (index != -1) {
         int left = index;
         int right = index;
@@ -46,7 +46,7 @@ std::pair<int, int> searchIndexes(std::vector<int>& arr, int target) {
 
 int main() {
     std::vector<int> arr = {};
-    std::pair<int, int> result = searchIndexes(arr, 8);
+    std::pair<int, int> result = search_indexes(arr, 8);
     std::cout << "[" << result.first << ", " << result.second << "]\n";
 
     return 0;

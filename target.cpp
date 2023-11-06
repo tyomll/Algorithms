@@ -2,7 +2,7 @@
 
 void insertArr(int* arr, int n) {
     for (int i = 0; i < n; ++i) {
-        std::cout << "Array[" << i << "] = ";
+        std::cout << "arr[" << i << "] = ";
         std::cin >> arr[i];
     }
 }

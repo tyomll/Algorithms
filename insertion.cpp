@@ -2,13 +2,13 @@
 
 void printArr(int* arr, int count) {
     for (int i = 0; i < count; ++i) {
-        std::cout << "Array[" << i << "] = " << arr[i] << std::endl;
+        std::cout << "arr[" << i << "] = " << arr[i] << std::endl;
     }
 }
 
 void insertArr(int* arr, int count) {
     for (int i = 0; i < count; i++) {
-        std::cout << "Array[" << i << "] = ";
+        std::cout << "arr[" << i << "] = ";
         std::cin >> arr[i];
     }
 }

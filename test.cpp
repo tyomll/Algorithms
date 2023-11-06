@@ -30,9 +30,9 @@ int main() {
     int count;
     std::cout << "Elements count = ";
     std::cin >> count;
-    std::cout << "Enter the first array elements.\n";
+    std::cout << "Enter the first arr elements.\n";
     insertSet(ob1, count);
-    std::cout << "\nNow enter the second array elements.\n";
+    std::cout << "\nNow enter the second arr elements.\n";
     insertSet(ob2, count);
     std::cout << "\nSorted vector\n\n";
     result = addElements(ob1, ob2);
