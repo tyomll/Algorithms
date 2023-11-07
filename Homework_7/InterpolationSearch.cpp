@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
 
 int interpolationSearch(std::vector<int>& arr, int low, int high, int target) {
-    if (low <= high && target >= arr[low] * target <= arr[high]) {
+    if (low <= high && target >= arr[low] && target <= arr[high]) {
         int position = low + (((target - arr[low]) * (high - low)) / (arr[high] - arr[low]));
         if (arr[position] == target) {
             return position;
@@ -26,28 +28,40 @@ int interpolationSearch(std::vector<int>& arr, int low, int high, int target) {
     return -1;
 }
 
-std::vector<int> importVector() {
-    std::string input;
-    std::vector<int> arr;
-    std::cout << "Enter the array numbers. Enter 'stop' to stop.\n";
-    while (true) {
-        std::cin >> input;
-        if (input == "stop") {
-            break;
+std::vector<int> inputVector() {
+    std::string userRow, clearRow;
+    std::vector<int> result;
+    std::cout << "Import an array of integer values separated by spaces: For example: 4 8 9 10\n";
+    std::getline(std::cin, userRow);
+    for (int i = 0; i < userRow.length(); ++i) {
+        if (std::isdigit(userRow[i])) {
+            clearRow += userRow[i];
         }
-
-        int number = std::stoi(input);
-        arr.push_back(number);
+        else {
+            clearRow += " ";
+        }
     }
 
-    return arr;
+    std::istringstream iss(clearRow);
+    int number;
+    while (iss >> number) {
+        result.push_back(number);
+    }
+
+    return result;
+}
+
+void printVector(std::vector<int>& arr) {
+    for (int i = 0; i < arr.size(); ++i) {
+        std::cout << "Array[" << i << "] = " << arr[i] << std::endl;
+    }
 }
 
 int main() {
-    std::vector<int> arr = importVector();
-    
-    std::cout << "Enter the target: ";
+    std::vector<int> arr = inputVector();
     int target;
+
+    std::cout << "Enter the element to be searched for, of type integer: ";
     std::cin >> target;
 
     int index = interpolationSearch(arr, 0, arr.size() - 1, target);
