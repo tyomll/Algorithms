@@ -1,5 +1,5 @@
 #include <iostream>
-#include "test.cpp"
+#include "template_binary_search.cpp"
 using namespace std;
 
 int exponentialSearch(int arr[], size_t size, int value) {
