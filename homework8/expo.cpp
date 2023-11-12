@@ -31,11 +31,14 @@ int exponential_search(int arr[], int target, int size)
         return 0;
     }
 
-    for (int i = 0; i < size; i *= 2)
+    for (int i = 0; i <= size; i *= 2)
     {
         if (arr[i] > target)
         {
             search(arr, i / 2, i, target);
+        }
+        if ( i > size){
+            i = size;
         }
     }
 
