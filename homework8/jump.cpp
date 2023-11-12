@@ -9,7 +9,11 @@ int search(int arr[], int size, int target)
     int index = 0;
     while (arr[index] < target)
     {
+        
         index += step;
+        if ( index > (size -1 )){
+            index = size-1;
+        }
     }
 
     if (arr[index] == target)
