@@ -1,61 +1,70 @@
 #include <iostream>
-#include <vector>
-#include <map>
-#include <algorithm>
+#include <list>
 
 template <typename T>
 class Graph {
 private:
-    std::map<T, std::vector<T>> list; 
-
+    struct Node {
+        T data;
+        std::list<T> friends;
+    };
+    std::list<Node> nodes;
 public:
     Graph() {}
 
-    void addEdge(const T& name, const T& edge) {
-        list[name].push_back(edge);
-        list[edge].push_back(name);
-    }
+    void add_node(const T& data, const T& value) {
+        auto it = std::find_if(nodes.begin(), nodes.end(),
+                               [&](const Node& node) { return node.data == data; });
 
-    void deleteVertex(const T& name) {
-        list.erase(name);
-        for (auto& entry : list) {
-            auto& neighbors = entry.second;
-            neighbors.erase(std::remove(neighbors.begin(), neighbors.end(), name), neighbors.end());
+        if (it == nodes.end()) {
+            Node newNode;
+            newNode.data = data;
+            newNode.friends.push_back(value);
+            nodes.push_back(newNode);
+        } else {
+            it->friends.push_back(value);
         }
     }
 
-    void printGraph() const {
-        for (const auto& pair : list) {
-            std::cout << pair.first << " : [";
-            for (size_t i = 0; i < pair.second.size(); ++i) {
-                if (i != pair.second.size() - 1) {
-                    std::cout << pair.second[i] << ", ";
-                } else {
-                    std::cout << pair.second[i];
-                }
+    void delete_node(const T& target) {
+        for (auto it = nodes.begin(); it != nodes.end();) {
+            if (it->data == target) {
+                it = nodes.erase(it);
+                break;
             }
-            std::cout << "]\n";
+            ++it;
+        }
+        for (auto& entry : nodes) {
+            entry.friends.remove(target);
         }
     }
 
-    ~Graph() {}
+
+    void print() {
+        for (const auto& node : nodes) {
+            std::cout << "Vertex " << node.data << ": { ";
+            for (const T& friendData : node.friends) {
+                std::cout << friendData << ", ";
+            }
+            std::cout << "\b\b } \n";
+        }
+    }
 };
 
 int main() {
-    Graph<char> graph;
-
-    graph.addEdge('A', 'B');
-    graph.addEdge('A', 'E');
-    graph.addEdge('A', 'C');
-    graph.addEdge('A', 'D');
-    graph.addEdge('B', 'E');
-    graph.addEdge('E', 'C');
-
-    graph.printGraph();
-
-    graph.deleteVertex('D');
-    std::cout << "\nAfter deleting vertex D:\n\n";
-    graph.printGraph();
+    Graph<char> obj;
+    obj.add_node('A', 'B');
+    obj.add_node('A', 'E');
+    obj.add_node('B', 'D');
+    obj.add_node('B', 'E');
+    obj.add_node('B', 'C');
+    obj.add_node('C', 'D');
+    obj.add_node('C', 'A');
+    obj.add_node('E', 'A');
+    obj.print();
+    obj.delete_node('E');
+    std::cout << std::endl;
+    obj.print();
 
     return 0;
 }
