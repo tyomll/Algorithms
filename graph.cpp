@@ -22,12 +22,24 @@ class Graph {
 			int fromIndex = vertexesVector[from];
 			int toIndex = vertexesVector[to];
 			matrixGraph[fromIndex][toIndex] = weight;
+			matrixGraph[toIndex][fromIndex] = weight;
 		}
+		void printMatrix() {
+			cout << "  ";
+			for (const auto& vertex : vertexesVector) {
+				cout << vertex.first << " ";
+			}
+			cout << endl;
 
-		void printMatrix () {
-			for (int i = 0; i < matrixGraph.size(); ++i) {
-				for (int j = 0; j < matrixGraph[i].size(); ++j) {
-					cout << matrixGraph[i][j] << " ";
+			for (const auto& vertexRow : vertexesVector) {
+				char vertexLabel = vertexRow.first;
+				int rowIndex = vertexRow.second;
+
+				cout << vertexLabel << " ";
+				for (const auto& col : vertexesVector) {
+					char colLabel = col.first;
+					int colIndex = col.second;
+					cout << matrixGraph[rowIndex][colIndex] << " ";
 				}
 				cout << endl;
 			}
@@ -35,7 +47,7 @@ class Graph {
 };
 
 int main() {
-	vector <char> vertexes = {'A', 'B', 'C', 'D', 'E'};
+	vector<char> vertexes = {'E', 'D', 'C', 'B', 'A'};
 
 	Graph graph(vertexes);
 
@@ -47,7 +59,6 @@ int main() {
 	graph.addEdge('D', 'E', 1);
 	graph.addEdge('E', 'C', 5);
 
-	cout << "Matrix:\n";
 	graph.printMatrix();
 
 	return 0;
