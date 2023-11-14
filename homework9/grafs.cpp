@@ -9,6 +9,7 @@ public:
     {
         std::string name;
         std::vector<std::string> friends;
+        std::vector<int> length;
     };
 
     std::vector<Node> nodes;
@@ -79,43 +80,67 @@ public:
         }
     }
 
-    void print_friends(Node node)
-    {
-        std::cout << "--> friends: ";
-
-        for (int i = 0; i < node.friends.size(); i++)
-        {
-            std::cout << node.friends[i] << " ";
-        }
-
-        std::cout << "\n";
-    }
-
     void print_nodes()
     {
-        std::cout << "This is list of all nodes \n \n";
+        std::cout << "This is a list of all nodes \n\n";
 
         for (int i = 0; i < nodes.size(); i++)
         {
-            std::cout << "node[" << i << "] "
-                      << " Vertex: " << nodes[i].name;
-            print_friends(nodes[i]);
+            std::cout << "node[" << i << "] Vertex: " << nodes[i].name << "\n";
+            std::cout << "--> Friends: ";
+            for (int j = 0; j < nodes[i].friends.size(); j++)
+            {
+                std::cout << nodes[i].friends[j] << " ";
+            }
+            std::cout << "\n";
+
+            std::cout << "--> Lengths: ";
+            for (int k = 0; k < nodes[i].length.size(); k++)
+            {
+                std::cout << nodes[i].length[k] << " ";
+            }
+            std::cout << "\n\n";
         }
 
         std::cout << "\n";
     }
-
- 
 };
+
+void shortest_way(Graf graph, std::string vertex)
+{
+    std::vector<std::string> unvisited;
+    for (const auto &node : graph.nodes)
+    {
+        unvisited.push_back(node.name);
+    }
+ 
+    for (const auto &node : unvisited)
+    {
+        std::cout << node << " ";
+    }
+}
 
 int main()
 {
     Graf graph;
 
-    graph.addNode("Aram", {"Jon", "Ani"});
+    graph.addNode("A", {"B", "D"});
+    graph.addEdge("B", {"C", "E", "D"});
+    graph.addEdge("D", {"E", "B"});
+    graph.addEdge("C", {"E"});
+    graph.addEdge("E", {"C", "D"});
+
+    graph.nodes[0].length = {6, 1};
+    graph.nodes[1].length = {5, 5, 2, 2};
+    graph.nodes[2].length = {1, 1, 2};
+    graph.nodes[3].length = {5, 5};
+    graph.nodes[4].length = {2, 5, 1};
+
+    std::vector<std::string> unvisited;
+
     graph.print_nodes();
-    graph.addEdge("Ani", {"Nare"});
-    graph.print_nodes();
+
+    shortest_way(graph, "A");
 
     // graph.addNode("John", ["John"]);
     // graph.addNode("Alice", ["John"]);
