@@ -24,6 +24,22 @@ class Graph {
 			matrixGraph[fromIndex][toIndex] = weight;
 			matrixGraph[toIndex][fromIndex] = weight;
 		}
+		void deleteVertex(char vertex) {
+			auto it = vertexesVector.find(vertex);
+
+			if (it != vertexesVector.end()) {
+				int vertexIndex = it->second;
+
+				vertexesVector.erase(it);
+				matrixGraph.erase(matrixGraph.begin() + vertexIndex);
+
+				for (auto& row : matrixGraph) {
+					row.erase(row.begin() + vertexIndex);
+				}
+			} else {
+				cout << "Vertex not found: " << vertex << endl;
+			}
+		}
 		void printMatrix() {
 			cout << "  ";
 			for (const auto& vertex : vertexesVector) {
@@ -61,6 +77,8 @@ int main() {
 
 	graph.printMatrix();
 
+	graph.deleteVertex('A');
+	graph.printMatrix();
 	return 0;
 }
 
