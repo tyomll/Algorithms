@@ -112,6 +112,14 @@
     "unordered_map": "cpp",
     "variant": "cpp",
     "vector": "cpp",
-    "algorithm": "cpp"
-  }
+    "algorithm": "cpp",
+    "deque": "cpp",
+    "stack": "cpp",
+    "map": "cpp",
+    "queue": "cpp",
+    "unordered_set": "cpp",
+    "iterator": "cpp",
+    "memory_resource": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "enabled"
 }

@@ -11,12 +11,31 @@ private:
     std::list<Node> nodes;
 public:
     Graph() {}
-
     void add_node(const T& source, const T& destination) {
         create_node(source, destination);
         create_node(destination, source);
     }
-
+    void delete_node(const T& target) {
+        for (auto it = nodes.begin(); it != nodes.end(); it++) {
+            if (it->data == target) {
+                it = nodes.erase(it);
+                break;
+            }
+        }
+        for (auto& entry : nodes) {
+            entry.friends.remove(target);
+        }
+    }
+    void print() {
+        for (const auto& element : nodes) {
+            std::cout << "Vertex " << element.data << ": { ";
+            for (const T& value : element.friends) {
+                std::cout << value << ", ";
+            }
+            std::cout << "\b\b } \n";
+        }
+    }
+    private:
     void create_node(const T& data, const T& value) {
         auto it = std::find_if(nodes.begin(), nodes.end(),
                                [&](const Node& node) { return node.data == data; });
@@ -30,30 +49,6 @@ public:
             it->friends.push_back(value);
         }
     }
-
-    void delete_node(const T& target) {
-        for (auto it = nodes.begin(); it != nodes.end(); it++) {
-            if (it->data == target) {
-                it = nodes.erase(it);
-                break;
-            }
-        }
-        for (auto& entry : nodes) {
-            entry.friends.remove(target);
-        }
-    }
-
-
-    void print() {
-        for (const auto& element : nodes) {
-            std::cout << "Vertex " << element.data << ": { ";
-            for (const T& value : element.friends) {
-                std::cout << value << ", ";
-            }
-            std::cout << "\b\b } \n";
-        }
-    }
-    private:
 };
 
 int main() {

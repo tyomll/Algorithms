@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/sargisgh/Documents/Algorithms/Homework_1",
-      "program": "/Users/sargisgh/Documents/Algorithms/Homework_1/build/Debug/outDebug"
+      "cwd": "/Users/sargisgh/Documents/Lessons/Algorithms/Homeworks_9/Graphs",
+      "program": "/Users/sargisgh/Documents/Lessons/Algorithms/Homeworks_9/Graphs/build/Debug/outDebug"
     }
   ]
 }
