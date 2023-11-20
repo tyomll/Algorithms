@@ -25,6 +25,7 @@ int max_sum(std::vector<int>& array) {
 }
 
 int main() {
+
     std::vector<int> array = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
     std::cout << "Sum is: " << max_sum(array) << "\n";
 
