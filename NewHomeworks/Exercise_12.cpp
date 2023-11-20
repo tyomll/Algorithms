@@ -1,27 +1,29 @@
 #include <iostream>
-#include <vector>
+#include <list>
 
-int k_th_max(std::vector<int>& arr, int k) {
-    int max = 0;
-    while (k > 0) {
-        int i = 0, j = 0;
-        max = arr[i];
-        while (i < arr.size()) {
-            if (arr[i] > max) {
-                max = arr[i];
-                j = i;
+template <typename T>
+void bubbleSort(std::list<T>& myList) {
+    bool swapped;
+    do {
+        swapped = false;
+        for (auto it = myList.begin(); it != std::prev(myList.end()); ++it) {
+            auto nextIt = std::next(it);
+            if (*it > *nextIt) {
+                std::swap(*it, *nextIt);
+                swapped = true;
             }
-            i++;
         }
-        arr.erase(arr.begin() + j);
-        k--;
-    }
-    return max;
+    } while (swapped);
 }
 
 int main() {
-    std::vector<int> arr = {3, 2, 1, 5, 6, 4};
-    int max = k_th_max(arr, 3);
-    std::cout << max << std::endl;
+    std::list<int> myList = {5, 2, 8, 1, 3};
+    bubbleSort(myList);
+    std::cout << "Sorted list: ";
+    for (const auto& element : myList) {
+        std::cout << element << " ";
+    }
+    std::cout << std::endl;
+
     return 0;
 }
