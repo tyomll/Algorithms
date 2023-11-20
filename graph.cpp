@@ -36,7 +36,8 @@ class Graph {
 				for (auto& row : matrixGraph) {
 					row.erase(row.begin() + vertexIndex);
 				}
-			} else {
+			}
+			else {
 				cout << "Vertex not found: " << vertex << endl;
 			}
 		}
