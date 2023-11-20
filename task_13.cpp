@@ -12,6 +12,7 @@ int divide(int array[], int low, int high) {
     }
 
     std::swap(array[i + 1], array[high]);
+
     return i + 1;
 }
 
