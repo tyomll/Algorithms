@@ -1,10 +1,9 @@
 #include <iostream>
 #include <climits>
-
 using namespace std;
 
 void printArray (int arr[],size_t size) {
-    cout << "[";
+    cout << "The Original Array: [";
     for (int i = 0; i < size; i++) {
         cout << arr[i] << " ";
     }
@@ -31,23 +30,34 @@ void findMaxSubArray (int arr[], size_t size, int &start, int &end, int &maxSum)
     }
 }
 
+void printMaxSubArray(int arr[], int start, int end) {
+    cout << "[";
+    for (int i = start; i <= end; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << "]" << endl;
+}
+
 int main () {
     int arr1[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
     size_t size1 = sizeof(arr1) / sizeof(arr1[0]);
 
-    printArray(arr1, size1);
-
-    int arr2[] = {5,4,-1,7,8};
+    int arr2[] = {5, 4, -1, 7, 8};
     size_t size2 = sizeof(arr2) / sizeof(arr2[0]);
 
     int start, end, maxSum;
     findMaxSubArray(arr1, size1, start, end, maxSum);
 
-    cout << "Example 1: [" << start << ", " << end << "] with the sum " << maxSum << endl;
+    printArray(arr1, size1);
+    cout << "Array 1 with the sum " << maxSum << " ";
+    printMaxSubArray(arr1, start, end);  
+
+    cout << endl;
 
     printArray(arr2, size2);
     findMaxSubArray(arr2, size2, start, end, maxSum);
-    cout << "Example 2: [" << start << ", " << end << "] with the sum " << maxSum << endl;
+    cout << "Array 2 with the sum " << maxSum << " ";
+    printMaxSubArray(arr2, start, end);
 
     return 0;
 }
